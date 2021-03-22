@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rates API</title>
+    <link rel="stylesheet" href="/references/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="headerText">Currency Exchange</h1>
+        <div class="wrapper">
+            <div class="main">
+                <div>
+                    <label>I have</label>
+                </div>
+                <input id="amount" type="number" min="0">
+                <select name="ihave" id="ihave">
+                    <option selected>TRY</option>
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>JPY</option>
+                    <option>BGN</option>
+                    <option>CZK</option>
+                    <option>DKK</option>
+                    <option>GBP</option>          
+                    <option>HUF</option>
+                    <option>PLN</option>
+                    <option>RON</option>
+                    <option>SEK</option>
+                    <option>CHF</option>
+                    <option>ISK</option>
+                    <option>NOK</option>          
+                    <option>HRK</option>
+                    <option>RUB</option>
+                    <option>AUD</option>
+                    <option>BRL</option>          
+                    <option>CAD</option>
+                    <option>CNY</option>
+                    <option>HKD</option>
+                    <option>IDR</option>          
+                    <option>ILS</option>
+                    <option>INR</option>
+                    <option>KRW</option>
+                    <option>MXN</option>          
+                    <option>MYR</option>
+                    <option>NZD</option>
+                    <option>PHP</option>
+                    <option>SGD</option>
+                    <option>THB</option>          
+                    <option>ZAR</option>
+                </select>
+                </select>
+            </div>
+            <div class="images">
+                <div class="valuesByDate">
+                    <small class="val1">22 Şubat 2021 : 1 USD = 7 TRY</small>
+
+                    <small class="val2">22 Mart 2021 : 1 USD = 7 TRY</small>
+                </div>
+                <div class="chart">
+                    <h2 class="perc"></h2>
+                </div>
+                
+            </div>
+            <div class="main2">
+                <div>
+                    <label>So, I can buy</label>
+                </div>
+                <input id="equals" type="number" min="0" readonly>
+                <select name="buy" id="buy">
+                    <option selected>USD</option>
+                    <option>TRY</option>
+                    <option>EUR</option>
+                    <option>JPY</option>
+                    <option>BGN</option>
+                    <option>CZK</option>
+                    <option>DKK</option>
+                    <option>GBP</option>          
+                    <option>HUF</option>
+                    <option>PLN</option>
+                    <option>RON</option>
+                    <option>SEK</option>
+                    <option>CHF</option>
+                    <option>ISK</option>
+                    <option>NOK</option>          
+                    <option>HRK</option>
+                    <option>RUB</option>
+                    <option>AUD</option>
+                    <option>BRL</option>          
+                    <option>CAD</option>
+                    <option>CNY</option>
+                    <option>HKD</option>
+                    <option>IDR</option>          
+                    <option>ILS</option>
+                    <option>INR</option>
+                    <option>KRW</option>
+                    <option>MXN</option>          
+                    <option>MYR</option>
+                    <option>NZD</option>
+                    <option>PHP</option>
+                    <option>SGD</option>
+                    <option>THB</option>          
+                    <option>ZAR</option>
+                </select>
+                </select>
+    
+            </div>
+        </div>
+
+    </div>
+    <script src="references/js/app.js"></script>
+</body>
+</html>
