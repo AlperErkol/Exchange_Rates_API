@@ -7,19 +7,28 @@ const val1 = document.querySelector('.val1');
 const val2 = document.querySelector('.val2');
 const perc = document.querySelector('.perc');
 
+const currentDate = document.getElementById('val1_info');
+const oneMonthAgo = document.getElementById('val2_info');
 
 
-const baseURL = "https://api.exchangeratesapi.io/latest";
-const baseURLforGraph = "https://api.exchangeratesapi.io/history";
+
+const baseURL = "https://v6.exchangerate-api.com/v6/";
+
+const API_key = "0247bb0569faf977d073cb2f";
+
 
 let coefficient = 0;
+
+
 
 
 getCurrencyValues().then(data => {
     coefficient = data;
 });
-getGraph().then(data => changeUI(data));
+
 eventListeners();
+
+
 
 
 
@@ -30,62 +39,7 @@ function eventListeners(){
     from.addEventListener('keyup',takeValue);
     firstCurrency.addEventListener('change',getCurrencyValuesNotEmpty);
     secondCurrency.addEventListener('change',getCurrencyValuesNotEmpty);
-    firstCurrency.addEventListener('change',tuttunParaDeli);
-    secondCurrency.addEventListener('change',tuttunParaDeli);
 
-
-}
-
-async function tuttunParaDeli(){
-
-    const update = await getGraph();
-    changeUI(update);
-
-}
-
-function calculatePercentage(oldData,newData){
-
-    let rise = 0;
-
-    if(oldData > newData){
-
-        //Azalmıştır...
-        let temp = (100*newData) / oldData;
-        rise = temp-100;
-
-
-
-    }else if(oldData < newData){
-
-        //Artmıştır...
-        let temp = (100*newData) / oldData;
-        rise = temp-100;
-        
-    }else{
-
-        //Değişmemiştir...
-        let temp = (100*newData) / oldData;
-        rise = 100-temp;
-
-
-
-    }
-
-    return rise;
-
-}
-
-
-async function changeUI(data){
-
-
-
-    val1.innerHTML = `22 Şubat 2021 : 1 ${firstCurrency.value} = ${data.toFixed(2)} ${secondCurrency.value}`
-    const now = await getCurrencyValues();
-    val2.innerHTML = `22 Mart 2021 : 1 ${firstCurrency.value} = ${now.toFixed(2)} ${secondCurrency.value}`
-
-    const rise = calculatePercentage(data,now);
-    perc.innerHTML = `% ${rise.toFixed(2)}`;
 
 
 }
@@ -98,39 +52,27 @@ function takeValue(){
         
         to.value = (from.value*coefficient).toFixed(2);
     }
-    
 
+
+    
 }
 
 async function getCurrencyValues(){
 
-    const response = await fetch(baseURL+"?base="+firstCurrency.value);
+    const response = await fetch(baseURL+API_key+"/latest/"+firstCurrency.value);
     const data = await response.json();
     const parameter = secondCurrency.value;
-    return data.rates[parameter];
+    return data.conversion_rates[parameter];
 
-}
-
-async function getGraph(){
-    let todayDate = new Date();
-    let oneMonthAgo = new Date();
-    oneMonthAgo.setMonth(todayDate.getMonth()-1); 
-    todayDate = todayDate.toISOString().split('T')[0];
-    oneMonthAgo = oneMonthAgo.toISOString().split('T')[0];
-    
-    const response = await fetch(baseURLforGraph+`?start_at=${oneMonthAgo}&end_at=${todayDate}&base=${firstCurrency.value}`);
-    const data = await response.json();
-    const parameter = secondCurrency.value;
-    return data.rates[oneMonthAgo][parameter];
-    
 }
 
 async function getCurrencyValuesNotEmpty(){
-    const response = await fetch(baseURL+"?base="+firstCurrency.value);
+    const response = await fetch(baseURL+API_key+"/latest/"+firstCurrency.value);
     const data = await response.json();
     const parameter = secondCurrency.value;
-    coefficient = data.rates[parameter];
+    coefficient = data.conversion_rates[parameter];
 
     takeValue();
     
 }
+

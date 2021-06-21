@@ -109,15 +109,17 @@ input[type=number] {
 }
 
 .wrapper .images .valuesByDate{
-    
+    width:60%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-direction: column;
 }
 
+.wrapper .images .valuesByDate .val1{
+    margin-bottom: 1rem;
+}
+
 .wrapper .images .chart{
-    width: 50%;
+    width: 40%;
     
     display: flex;
     justify-content: center;
